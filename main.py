@@ -47,7 +47,7 @@ def print_board(board):
 
 
 def main():
-    board = init_board()
+    board = read_board("puzzles/easy-1.txt")
     insert_number(1, board, 1, 3)
     print_board(board)
 
