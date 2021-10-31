@@ -101,6 +101,8 @@ class Board:
 
 
     def trim_possible_slot_values(self, row, col):
+        value_found = False
+
         impossible_values = []
         row_values = self.get_slot_row(row, col)
         col_values = self.get_slot_col(row, col)
@@ -114,10 +116,24 @@ class Board:
         
         if len(self.rows[row][col].possible_values) == 1:
             self.rows[row][col].value = self.rows[row][col].possible_values[0]
+            value_found = True
+        
+        return value_found
 
     
     def trim_possible_values(self):
+        new_value_found = False
         for i in range(Board.BOARD_SIZE):
             for j in range(Board.BOARD_SIZE):
                 if not self.rows[i][j].value:
-                    self.trim_possible_slot_values(i, j)
+                    if self.trim_possible_slot_values(i, j):
+                        new_value_found = True
+        
+        return new_value_found
+
+
+    def solve(self):
+        # loop until nothing further can be found
+        while self.trim_possible_values():
+            pass
+        
