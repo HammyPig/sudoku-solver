@@ -1,3 +1,9 @@
+def insert_number(value, board, row, col):
+    row -= 1
+    col -= 1
+    board[row][col] = value
+
+
 def print_board(board):
     i = 0
     for i in range(len(board)):
@@ -11,7 +17,7 @@ def print_board(board):
                 print("|", end=" ")
 
             print(board[i][j], end=" ")
-            
+
         print("|")
     print(25 * "-")
 
@@ -23,6 +29,7 @@ def main():
         row = 9 * [0]
         board.append(row)
 
+    insert_number(1, board, 1, 3)
     print_board(board)
 
 
