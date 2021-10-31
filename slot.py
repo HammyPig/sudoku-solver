@@ -20,7 +20,10 @@ class Slot:
     
 
     def remove_possible_value(self, value):
-        self.possible_values.remove(value)
+        try:
+            self.possible_values.remove(value.value)
+        except ValueError:
+            pass
     
 
     def print_possible_values(self):
