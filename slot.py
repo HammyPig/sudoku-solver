@@ -8,7 +8,7 @@ class Slot:
             self.possible_values = [self.value]
     
 
-    def __str__(self):
+    def __repr__(self):
         if self.value == 0:
             return " "
         else:
