@@ -1,3 +1,15 @@
+def read_board(path):
+    with open(path, "r") as f:
+        board = []
+        for i in range(9):
+            row = f.readline()
+            row = row.rstrip("\n")
+            row = list(row)
+            board.append(row)
+    
+    return board
+
+
 def insert_number(value, board, row, col):
     row -= 1
     col -= 1
