@@ -1,3 +1,5 @@
+from slot import Slot
+
 class Board:
 
     BOARD_SIZE = 9
@@ -8,7 +10,7 @@ class Board:
 
         if not path:
             for i in range(Board.BOARD_SIZE):
-                row = Board.BOARD_SIZE * [0]
+                row = Board.BOARD_SIZE * [Slot(0)]
                 self.rows.append(row)
         else:
             self.rows = self.read_board(path)
@@ -27,11 +29,7 @@ class Board:
                 # print vertical separator every 3 columns
                 if j % Board.SQUARE_SIZE == 0:
                     string += "| "
-
-                if self.rows[i][j] == 0:
-                    string += "  "
-                else:
-                    string += str(self.rows[i][j]) + " "
+                string += str(self.rows[i][j]) + " "
 
             string += "|\n"
         string += 25 * "-"
@@ -48,7 +46,8 @@ class Board:
                 row = list(row)
 
                 for i in range(len(row)):
-                    row[i] = int(row[i])
+                    value = int(row[i])
+                    row[i] = Slot(value)
                 board.append(row)
         
         return board
