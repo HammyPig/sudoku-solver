@@ -146,3 +146,7 @@ class Board:
         while self.trim_possible_values():
             pass
         
+        if not self.unknown_values:
+            return True
+        else:
+            return False
