@@ -133,11 +133,10 @@ class Board:
     
     def trim_possible_values(self):
         new_value_found = False
-        for i in range(Board.BOARD_SIZE):
-            for j in range(Board.BOARD_SIZE):
-                if not self.rows[i][j].value:
-                    if self.trim_possible_slot_values(i, j):
-                        new_value_found = True
+        for slot in self.unknown_values:
+            if self.trim_possible_slot_values(slot.row, slot.col):
+                self.unknown_values.remove(slot)
+                new_value_found = True
         
         return new_value_found
 
