@@ -74,3 +74,34 @@ class Board:
                 
             print("|")
         print(97 * "-")
+    
+
+    def get_slot_row(self, row, col):
+        row -= 1
+        col -= 1
+        return self.rows[row]
+
+    
+    def get_slot_col(self, row, col):
+        row -= 1
+        col -= 1
+        column = []
+        for i in range(Board.BOARD_SIZE):
+            column.append(self.rows[i][col])
+
+        return column
+
+    
+    def get_slot_square(self, row, col):
+        row -= 1
+        col -= 1
+
+        # round down to interval of 3
+        row_square = row // 3 * 3
+        col_square = col // 3 * 3
+
+        square = []
+        for row in self.rows[row_square:row_square + 3]:
+            square += row[col_square:col_square + 3]
+
+        return square
