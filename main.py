@@ -1,3 +1,12 @@
+def init_board():
+    board = []
+    for i in range(9):
+        row = 9 * [0]
+        board.append(row)
+    
+    return board
+
+
 def read_board(path):
     with open(path, "r") as f:
         board = []
@@ -35,12 +44,7 @@ def print_board(board):
 
 
 def main():
-    # Initialise board
-    board = []
-    for i in range(9):
-        row = 9 * [0]
-        board.append(row)
-
+    board = init_board()
     insert_number(1, board, 1, 3)
     print_board(board)
 
