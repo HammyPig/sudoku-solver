@@ -40,7 +40,10 @@ def print_board(board):
             if j % 3 == 0:
                 print("|", end=" ")
 
-            print(board[i][j], end=" ")
+            if board[i][j] == 0:
+                print(" ", end=" ")
+            else:
+                print(board[i][j], end=" ")
 
         print("|")
     print(25 * "-")
