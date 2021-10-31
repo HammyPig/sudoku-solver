@@ -5,7 +5,7 @@ class Slot:
         if self.value == 0:
             self.possible_values = list(range(1, 10))
         else:
-            self.possible_values = []
+            self.possible_values = [self.value]
     
 
     def __str__(self):
@@ -21,3 +21,8 @@ class Slot:
 
     def remove_possible_value(self, value):
         self.possible_values.remove(value)
+    
+
+    def print_possible_values(self):
+        print("".join(str(n) for n in self.possible_values), end="")
+        print((10 - len(self.possible_values)) * " ", end="")

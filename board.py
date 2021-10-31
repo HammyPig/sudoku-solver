@@ -36,7 +36,7 @@ class Board:
 
         return string
 
-
+    
     def read_board(self, path):
         with open(path, "r") as f:
             board = []
@@ -57,3 +57,20 @@ class Board:
         row -= 1
         col -= 1
         self.rows[row][col] = value
+
+    
+    def print_possible_values(self):
+        for i in range(Board.BOARD_SIZE):
+            # print horizontal separator every 3 rows
+            if i % Board.SQUARE_SIZE == 0:
+                print(97 * "-")
+
+            for j in range(Board.BOARD_SIZE):
+                # print vertical separator every 3 columns
+                if j % Board.SQUARE_SIZE == 0:
+                    print("|", end=" ")
+
+                self.rows[i][j].print_possible_values()
+                
+            print("|")
+        print(97 * "-")
