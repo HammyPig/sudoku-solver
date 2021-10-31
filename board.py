@@ -142,9 +142,11 @@ class Board:
 
 
     def solve(self):
-        # loop until nothing further can be found
-        while self.trim_possible_values():
-            pass
+        # loop until nothing changes
+        unknown_value_count = 0
+        while unknown_value_count != len(self.unknown_values):
+            unknown_value_count = len(self.unknown_values)
+            self.trim_possible_values()
         
         if not self.unknown_values:
             return True
