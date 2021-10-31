@@ -5,9 +5,8 @@ def main():
     board = Board("puzzles/easy-1.txt")
     print(board)
     board.print_possible_values()
-    print(board.get_slot_row(9, 2))
-    print(board.get_slot_col(9, 2))
-    print(board.get_slot_square(9, 2))
+    board.trim_possible_slot_values(1, 1)
+    board.print_possible_values()
 
 
 if __name__ == "__main__":

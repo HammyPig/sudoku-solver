@@ -105,3 +105,18 @@ class Board:
             square += row[col_square:col_square + 3]
 
         return square
+
+
+    def trim_possible_slot_values(self, row, col):
+        impossible_values = []
+        row_values = self.get_slot_row(row, col)
+        col_values = self.get_slot_col(row, col)
+        square_values = self.get_slot_square(row, col)
+
+        impossible_values = row_values + col_values + square_values
+        impossible_values = set(impossible_values)
+
+        i = row - 1
+        j = col - 1
+        for n in impossible_values:
+            self.rows[i][j].remove_possible_value(n)
