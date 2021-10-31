@@ -24,15 +24,23 @@ def main():
                "extra-hard-5"
                ]
     
+    completed = []
+    failed = []
     for puzzle in puzzles:
         print("solving", puzzle, "...")
         board = Board("puzzles/" + puzzle + ".txt")
         print(board)
-        if not board.solve():
+        if board.solve():
+            completed.append(puzzle)
+        else:
             print(board)
             board.print_possible_values()
-            raise AssertionError
+            failed.append(puzzle)
+            #raise AssertionError
         print(board)
+    
+    print("Completed:", len(completed), completed)
+    print("Failed:", len(failed), failed)
 
 
 if __name__ == "__main__":
