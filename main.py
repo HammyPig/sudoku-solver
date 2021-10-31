@@ -14,6 +14,9 @@ def read_board(path):
             row = f.readline()
             row = row.rstrip("\n")
             row = list(row)
+
+            for i in range(len(row)):
+                row[i] = int(row[i])
             board.append(row)
     
     return board
