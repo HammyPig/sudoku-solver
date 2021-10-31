@@ -6,11 +6,16 @@ class Board:
     SQUARE_SIZE = 3
 
     def __init__(self, path=None):
+        self.unknown_values = []
         self.rows = []
 
         if not path:
             for i in range(Board.BOARD_SIZE):
-                row = Board.BOARD_SIZE * [Slot(0)]
+                row = []
+                for j in range(Board.BOARD_SIZE):
+                    slot = Slot(i, j, 0)
+                    row.append(slot)
+                    self.unknown_values.append(slot)
                 self.rows.append(row)
         else:
             self.rows = self.read_board(path)
@@ -45,9 +50,14 @@ class Board:
                 row = row.rstrip("\n")
                 row = list(row)
 
-                for i in range(len(row)):
-                    value = int(row[i])
-                    row[i] = Slot(value)
+                for j in range(len(row)):
+                    value = int(row[j])
+                    slot = Slot(i, j, value)
+                    row[j] = slot
+
+                    if value == 0:
+                        self.unknown_values.append(slot)
+
                 board.append(row)
         
         return board

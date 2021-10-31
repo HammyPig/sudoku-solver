@@ -1,5 +1,7 @@
 class Slot:
-    def __init__(self, value=0):
+    def __init__(self, row, col, value=0):
+        self.row = row
+        self.col = col
         self.value = value
         
         if self.value == 0:
