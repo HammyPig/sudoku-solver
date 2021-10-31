@@ -77,14 +77,10 @@ class Board:
     
 
     def get_slot_row(self, row, col):
-        row -= 1
-        col -= 1
         return self.rows[row]
 
     
     def get_slot_col(self, row, col):
-        row -= 1
-        col -= 1
         column = []
         for i in range(Board.BOARD_SIZE):
             column.append(self.rows[i][col])
@@ -93,9 +89,6 @@ class Board:
 
     
     def get_slot_square(self, row, col):
-        row -= 1
-        col -= 1
-
         # round down to interval of 3
         row_square = row // 3 * 3
         col_square = col // 3 * 3
@@ -116,7 +109,15 @@ class Board:
         impossible_values = row_values + col_values + square_values
         impossible_values = set(impossible_values)
 
-        i = row - 1
-        j = col - 1
         for n in impossible_values:
-            self.rows[i][j].remove_possible_value(n)
+            self.rows[row][col].remove_possible_value(n)
+        
+        if len(self.rows[row][col].possible_values) == 1:
+            self.rows[row][col].value = self.rows[row][col].possible_values[0]
+
+    
+    def trim_possible_values(self):
+        for i in range(Board.BOARD_SIZE):
+            for j in range(Board.BOARD_SIZE):
+                if not self.rows[i][j].value:
+                    self.trim_possible_slot_values(i, j)
